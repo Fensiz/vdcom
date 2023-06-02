@@ -11,7 +11,7 @@ public class Values {
 	private final HashMap<Pair<String, String>, Double> dictionary = new HashMap<>();
 	private final List<Value> unknown = new ArrayList<>();
 
-	public Double find(String first, String second, Double index, Map<Pair<String, String>, Double> dict) {
+	private Double find(String first, String second, Double index, Map<Pair<String, String>, Double> dict) {
 		Double res = null;
 		Map<Pair<String, String>, Double> dictForChild = new HashMap<>(dict);
 		Map<String, Double> dictForIterate = dict.entrySet().stream()
@@ -36,7 +36,7 @@ public class Values {
 		return find(first, second, 1.0, dictionary);
 	}
 
-	public void append(Value val) {
+	private void append(Value val) {
 		if (val == null) {
 			return;
 		}
@@ -55,16 +55,6 @@ public class Values {
 
 	public void append(String line) {
 		append(Value.getInstance(line));
-	}
-
-	public Values(Value... vals) {
-		for (Value val : vals) {
-			append(val);
-		}
-	}
-
-	public Values(String line) {
-		append(line);
 	}
 
 	public void printResult() {
